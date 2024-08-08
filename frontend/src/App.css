@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Julius+Sans+One&display=swap");
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.julius {
+  font-family: "Julius Sans One", sans-serif;
+}
+
+.itim {
+  font-family: "Itim", sans-serif;
+}
+
+.hero {
+  background-image: url("./Assets/wave-haikei.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* animation: wave 10s infinite ease-out; */
+  animation-direction: alternate;
+}
+@keyframes wave {
+  0% {
+    background-image: url("./Assets/wave-haikei.svg");
+  }
+  50% {
+    background-image: url("./Assets/wave-haikei2.svg");
+  }
+  100% {
+    background-image: url("./Assets/wave-haikei.svg");
+  }
+}
+
+.arrow {
+  animation: bounce 2s infinite;
+  transform: rotate(270deg);
+  cursor: pointer;
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.open-menu-btn {
+  display: block;
+}
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: black;
+  color: white;
+  padding: 16px;
+  width: 83.3333%;
+  transition: transform 0.3s ease-in-out;
+}
+.ham-action {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hamburger-menu-open {
+  transform: translateX(0);
+}
+
+.hamburger-menu-closed {
+  transform: translateX(100%);
+}
+.profile-container {
+  background-image: url("./Assets/wave-haikei.svg");
+  background-size: cover;
+}
+
+video {
+  z-index: 1;
+}
+.hamburger {
+  z-index: 2;
+}
