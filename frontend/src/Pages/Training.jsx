@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useUser } from "../userContext.js";
+import { useUser } from "../userContext";
 import Module from "./../Components/Module";
 import Men from "../Assets/Men.jpg";
-import Women from "../Assets/Women.jpg";
-import Chest from "../Assets/chest.png";
-import Personalized from "../Assets/PT-image-via-OriGym.jpg";
-
+import Women from "../Assets/women.webp";
 
 const Training = ({ videos, setTotal, setProgress }) => {
   const { user } = useUser();
@@ -20,10 +17,6 @@ const Training = ({ videos, setTotal, setProgress }) => {
     availability: [],
     injuryDetails: "",
   });
-
-  useEffect(() => {
-    handleFetchInfo();
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -53,55 +46,77 @@ const Training = ({ videos, setTotal, setProgress }) => {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
-      console.log(data);
+      console.log("Form submitted:", data);
 
+      // Reset userData after submission
       setUserData({
+        ...userData,
         fitnessLevel: [],
         injuries: "",
         availability: [],
         injuryDetails: "",
       });
 
-      handleCreatePersonal();
+      // Trigger the creation of a personal module after form submission
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleCreatePersonal = () => {
-    const gender = user.gender === "male" ? "Men" : "Women";
-    const genderSpecific = videos.filter((item) => item.for === gender);
-    const difficulty = userData.fitnessLevel[0];
-
-    const personalModule = genderSpecific.filter(
-      (item) => item.difficulty === difficulty
-    );
-    setPersonal(personalModule);
-    setTotal(personalModule.length);
   };
 
   const handleFetchInfo = async () => {
     try {
-      const response = await fetch("http://localhost:3000/training", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/training/${user.username}`, // Pass username as route parameter
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json();
-      const ourUser = data.find((item) => item.name === user.username);
+      console.log("FETCHING INFO", data);
+
+      // Update state with fetched data
       setUserData({
         ...userData,
-        age: ourUser.age,
-        gender: ourUser.gender,
+        fitnessLevel: data[0].fitnessLevel || [],
+        injuries: data[0].injuries || "",
+        availability: data[0].availability || [],
+        injuryDetails: data[0].injuryDetails || "",
       });
     } catch (error) {
       console.log(error);
     }
   };
 
- 
+  // Trigger handleCreatePersonal when userData is updated
+  useEffect(() => {
+    if (
+      userData.fitnessLevel.length > 0 ||
+      userData.injuries ||
+      userData.availability.length > 0
+    ) {
+      handleCreatePersonal();
+    }
+  }, [userData]);
 
+  const handleCreatePersonal = () => {
+    const gender = user.gender === "male" ? "Men" : "Women";
+    const genderSpecificVideos = videos.filter((item) => item.for === gender);
+    console.log("GenderSpecific", genderSpecificVideos);
+    const difficulty = userData.fitnessLevel[0];
+
+    console.log("Difficulty", difficulty);
+    const filteredPersonalModule = genderSpecificVideos.filter((item) =>
+      userData.fitnessLevel.includes(item.difficulty)
+    );
+
+    console.log("Filtered Personal Module:", filteredPersonalModule);
+    setPersonal(filteredPersonalModule);
+    setTotal(filteredPersonalModule.length);
+  };
+
+  useEffect(() => {
+    handleFetchInfo();
+  }, []);
   return (
     <div className="mt-4 quicksand flex items-center flex-col justify-center ">
       <div className=" p-8 bg-[#003b59] rounded-lg shadow-lg w-full max-w-4xl">
@@ -251,7 +266,6 @@ const Training = ({ videos, setTotal, setProgress }) => {
             />
           </div>
         </form>
-       
       </div>
       <div className="bg-black w-11/12 p-4 rounded mt-8 ">
         <h2 className="mt-4 text-2xl p-8 underline text-center ">
@@ -263,19 +277,13 @@ const Training = ({ videos, setTotal, setProgress }) => {
               <Module
                 name="Personlized for you"
                 videos={personal}
-                image={Personalized}
+                image="https://images.squarespace-cdn.com/content/v1/56416249e4b041a7c3999f19/1646199109462-SOIX7UQ9IMCHXM0QYWDS/1410.jpeg?format=1500w"
                 setProgress={setProgress}
                 setTotal={setTotal}
               />
             )}
           </div>
-          <Module
-            name="Chest"
-            image={Chest}
-            videos={videos}
-            setProgress={setProgress}
-            setTotal={setTotal}
-          />
+
           <Module
             name="Men"
             image={Men}

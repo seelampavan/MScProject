@@ -9,8 +9,8 @@ import Resource from "./Pages/Resource";
 import Training from "./Pages/Training";
 import Forum from "./Pages/Forum";
 import DashboardHome from "./Pages/DashboardHome";
-import testVideo from "./Assets/Videos/Abs_BirdDogs.mp4";
 import Profile from "./Pages/Profile";
+import About from "./Pages/About";
 
 const App = () => {
   const { user } = useUser();
@@ -18,44 +18,57 @@ const App = () => {
   const [total, setTotal] = useState(0);
   const videos = [
     {
-      videoSrc: testVideo,
-      name: "Bird Dogs",
-      difficulty: "Intermediate",
-      des: "The birddog exercise is a core strengthening exercise that involves extending one arm and the opposite leg while maintaining a stable position on all fours.",
+      videoSrc:
+        "https://www.youtube.com/embed/8oDNH8714oE?list=PLLALQuK1NDrhbNpRSUEAloceyNEMzcKzN",
+      name: "Side KIcks",
+      difficulty: "Beginner",
+      des: "Side kick is traditionally a kick that will thrust straight through, and it's a kick that makes contact with your heel, with the blade edge of the heel, which is the outside of your heel",
       for: "Men",
-      other: "3 times",
     },
     {
-      videoSrc: testVideo,
-      name: "Bird Dogs",
+      videoSrc:
+        "https://www.youtube.com/embed/v2Rzhr1OtN4?list=PLLALQuK1NDrhbNpRSUEAloceyNEMzcKzN",
+      name: "How to Defend against a Front Choke",
       difficulty: "Intermediate",
-      des: "The birddog exercise is a core strengthening exercise that involves extending one arm and the opposite leg while maintaining a stable position on all fours.",
+      des: "A choke , when he chokes this is a relatively simple solution. You can punch him, you can punch him, you can poke him in the eye, you can do very many things from that place",
       for: "Men",
-      other: "3 times",
     },
     {
-      videoSrc: testVideo,
-      name: "Bird Dogs",
-      difficulty: "Intermediate",
-      des: "The birddog exercise is a core strengthening exercise that involves extending one arm and the opposite leg while maintaining a stable position on all fours.",
+      videoSrc:
+        "https://www.youtube.com/embed/rKo7fFxc5WI?list=PLLALQuK1NDrhbNpRSUEAloceyNEMzcKzN",
+      name: "How to Do an Elbow to the Rea",
+      difficulty: "Advanced",
+      des: "Let's continue forward. We're going to strike an individual that stands behind you.  Obviously, in a street environment. Once again, target could appear from anywhere. This strike will be to an individual who's actually there.",
+      for: "Men",
+    },
+    {
+      videoSrc:
+        "https://www.youtube.com/embed/SmEgevqarkw?list=PLLALQuK1NDrhbNpRSUEAloceyNEMzcKzN",
+      name: "How to Defend against Gun from the Rear ",
+      difficulty: "Advanced",
+      des: "This is a defense against a gun from the rear. The gun is placed in the back of the head. The attacker is threatening you from the back. This is a very dangerous situation.",
+      for: "Men",
+    },
+    {
+      videoSrc: "https://www.youtube.com/embed/xw-8_UTJo2Q",
+      name: "Release yourself from a frontal attack.",
+      difficulty: "Beginner",
+      des: "This is a frontal attack. The attacker is in front of you. He's trying to grab you. He's trying to punch you. He's trying to do something to you. You need to release yourself from this situation.",
       for: "Women",
-      other: "3 times",
     },
     {
-      videoSrc: testVideo,
-      name: "Bird Dogs",
+      videoSrc: "https://www.youtube.com/embed/uphLuMyAVX0",
+      name: "How to Defend Yourself from a Frontal Choke ",
       difficulty: "Intermediate",
-      des: "The birddog exercise is a core strengthening exercise that involves extending one arm and the opposite leg while maintaining a stable position on all fours.",
-      for: "Biceps",
-      other: "3 times",
+      des: " how to release yourself from this situation, while kicking and punching the attacker in order to run away and call some help.",
+      for: "Women",
     },
     {
-      videoSrc: testVideo,
-      name: "Hell of exercise",
-      difficulty: "Intermediate",
-      des: "The birddog exercise is a core strengthening exercise that involves extending one arm and the opposite leg while maintaining a stable position on all fours.",
-      for: "Chest",
-      other: "3 times",
+      videoSrc: "https://www.youtube.com/embed/lJ-FFqUH4ME",
+      name: "Two Guys vs. One Girl",
+      difficulty: "Advanced",
+      des: " how to release yourself from this situation, while kicking and punching the attacker in order to run away and call some help.",
+      for: "Women",
     },
   ];
 
@@ -66,6 +79,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/about" element={<About />} />
           {user && (
             <Route path="/dashboard" element={<Dashboard />}>
               <Route

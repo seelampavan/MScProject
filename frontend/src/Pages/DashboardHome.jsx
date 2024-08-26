@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PieChart from "../Components/PieChart";
 import LineChart from "../Components/LineChart";
 import { Link } from "react-router-dom";
-import { useUser } from "../userContext.js";
+import { useUser } from "../userContext.jsx";
 
 const DashboardHome = ({ progress, total }) => {
   const { user } = useUser();

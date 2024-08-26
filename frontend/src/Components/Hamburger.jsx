@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../userContext.js";
+import { useUser } from "../userContext.jsx";
 import close from "../Assets/close.png";
 import "../App.css";
 const Hamburger = ({ isOpen, onClose }) => {

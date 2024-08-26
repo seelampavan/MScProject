@@ -1,5 +1,5 @@
 import React from "react";
-import { useUser } from "../userContext.js"; // Adjust the import path based on your project structure
+import { useUser } from "../userContext"; // Adjust the import path based on your project structure
 import "../App.css";
 const Profile = () => {
   const { user } = useUser(); // Assuming useUser provides user, loading, and error states

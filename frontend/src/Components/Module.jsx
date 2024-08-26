@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import VideoCom from "./VideoCom";
 import PieChart from "./PieChart";
-import { useUser } from "../userContext.js";
+import { useUser } from "../userContext";
 const Module = ({ videos, name, image, setProgress, setTotal }) => {
   const [data, setData] = useState([]);
   const [showModule, setShowModule] = useState(false);
@@ -36,7 +36,6 @@ const Module = ({ videos, name, image, setProgress, setTotal }) => {
         );
         if (res.ok) {
           const progressData = await res.json();
-          console.log(progressData);
           if (progressData) {
             setIndiProgress(progressData.progress);
             setProgress((prev) => prev + progressData.progress);

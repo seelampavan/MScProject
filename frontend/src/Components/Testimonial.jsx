@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import Test from "../Assets/download.jpeg";
+import Test1 from "../Assets/download (1).jpeg";
 import Member from "./Member";
 import TestUser from "./TestUser";
 import Footer from "./Footer";
@@ -18,7 +19,7 @@ const Testimonial = () => {
         </div>
         <div className="w-full mt-8 team flex flex-row flex-wrap justify-around p-16 bg-black">
           <Member source={Test} name="John Doe" pos="Self-defense expert" />
-          <Member source={Test} name="Deepak" pos="Self-defense expert" />
+          <Member source={Test1} name="John Doe" pos="Self-defense expert" />
           <Member source={Test} name="John Doe" pos="Self-defense expert" />
           <Member source={Test} name="John Doe" pos="Self-defense expert" />
         </div>

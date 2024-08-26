@@ -2,8 +2,7 @@ import React from "react";
 
 import open from "../Assets/open.png";
 import { Link } from "react-router-dom";
-import { useUser } from "../userContext.js";
-
+import { useUser } from "../userContext.jsx";
 
 const Header2 = ({ showHamburger, setShowHamburger }) => {
   const { user } = useUser();
@@ -26,15 +25,15 @@ const Header2 = ({ showHamburger, setShowHamburger }) => {
           {user.username ? (
             <>
               <Link to="/" className="hover:underline">
-                Dashboard
+                Home
               </Link>
-              <Link to="/contact">
+              <Link to="/dashboard/training">
                 <li className="hover:underline">Training Programs</li>
               </Link>
-              <Link to="/about" className="hover:underline">
+              <Link to="/dashboard/resource" className="hover:underline">
                 Resource Library
               </Link>
-              <Link to="/dashboard">
+              <Link to="/dashboard/forum">
                 <li className="hover:underline">Forum</li>
               </Link>
             </>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header2 from "./../Components/Header2";
 import Hamburger from "./../Components/Hamburger";
-import { useUser } from "../userContext.js";
+import { useUser } from "../userContext";
 
 const Dashboard = () => {
   const [showHamburger, setShowHamburger] = useState(true);
@@ -34,7 +34,6 @@ const Dashboard = () => {
         }),
       });
       const data = await response.json();
-      console.log("Time saved", data);
     } catch (error) {
       console.log("Error in handleSaveTime", error);
     }
